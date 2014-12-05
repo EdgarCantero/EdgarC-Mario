@@ -21,6 +21,7 @@ game.PlayerEntity = me.Entity.extend({
         this.body.setVelocity(5, 20);
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
     },
+    
     update: function(delta) {
         if (me.input.isKeyPressed("right")) {
             this.body.vel.x += this.body.accel.x * me.timer.tick;
@@ -29,6 +30,7 @@ game.PlayerEntity = me.Entity.extend({
         } else if(me.input.isKeyPressed('left')) {
             this.flipX(true);
             this.body.vel.x -= this.body.accel.x * me.timer.tick;
+            
         }else {
             this.body.vel.x = 0;
         }
