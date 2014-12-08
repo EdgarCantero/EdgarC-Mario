@@ -8,13 +8,15 @@ game.TitleScreen = me.ScreenObject.extend({
                  
                  me.game.world.addChild(new (me.Renderable.extend ({
                      init: function(){
-                         this._super(me.Renderable, 'init', [510, 30, 
+                          this._super(me.Renderable, 'init', [510, 30, 
                             me.game.viewport.width, me.game.viewport.height]);
+                            this.font = new me.Font("Arial", 46, "white");
                          
-                     },
+                     }, 
                      
-                     draw: function(){
-                         
+                     draw: function(renderer){
+                         this.font.draw(renderer.getContext(), "Marioish", 450, 130);
+                         this.font.draw(renderer.getContext(), "Press ENTER to play!", 250, 530);
                      }
                      
                  })));
@@ -31,6 +33,7 @@ game.TitleScreen = me.ScreenObject.extend({
 	 *  action to perform when leaving this screen (state change)
 	 */
 	onDestroyEvent: function() {
-		me.input.unbindKey(me.inputKEY.ENTER);
+		me.input.unbindKey(me.input.KEY.ENTER);
+                me.event.unsubscribe(this.handler);
 	}
 });
